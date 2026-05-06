@@ -1,0 +1,678 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Hi! 🍰</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            min-height: 100vh;
+            background-color: #ffe4ec;
+            display: flex;
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+            overflow-x: hidden;
+            /* 防止左右晃动 */
+        }
+
+        .orange:hover {
+            background-color: darkorange;
+        }
+
+        .blue:hover {
+            background-color: #0056b3;
+        }
+
+        .orange {
+            background-color: orange;
+            color: white;
+        }
+
+        .blue {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 0;
+            width: 90%;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+
+            display: flex;
+        }
+
+        button {
+            margin: 8px;
+            padding: 18px 40px;
+            font-size: 18px;
+            /* 字变大 */
+            border-radius: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #222;
+            color: white;
+        }
+
+
+
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #content {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        #cover {
+            background-color: #ffe4ec;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #cover p {
+            margin: 5px;
+        }
+
+        #cover p:nth-child(3) {
+            color: #ff6b81;
+            font-size: 16px;
+        }
+
+        .cover-btn {
+            color: #ff6b81;
+            /* 粉色字体 */
+        }
+
+        .big-heart {
+            font-size: 120px;
+            /* 超大 */
+            margin: 20px 0;
+        }
+
+        #passwordInput {
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+
+        #errorMessage {
+            color: red;
+        }
+
+        .story-page {
+            background-color: transparent;
+            min-height: 100vh;
+            padding: 60px 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .story-page p {
+            font-size: 20px;
+            line-height: 1.8;
+        }
+
+        .emoji {
+            font-size: 20px;
+            /* 放大 */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+
+        .back-btn:active {
+            transform: translateY(0);
+        }
+
+        .shake {
+            animation: shake 0.35s;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            50% {
+                transform: translateX(10px);
+            }
+
+            75% {
+                transform: translateX(-10px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.25);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            70% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .heart-beat {
+            animation: heartbeat 1s infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 100, 150, 0.6));
+        }
+
+        .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            /* I 和 ❤️U 的间距 */
+        }
+
+        .love-text {
+            font-size: 100px;
+        }
+
+        .heart {
+            font-size: 70px;
+            cursor: pointer;
+            animation: beat 1s infinite;
+            text-align: center;
+            margin-top: 100px;
+            user-select: none;
+        }
+
+        @keyframes beat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            user-select: none;
+            animation: explode 1.3s ease-out forwards;
+        }
+
+        .trail {
+            position: fixed;
+            pointer-events: none;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: pink;
+            opacity: 0.8;
+            animation: fadeTrail 0.8s linear forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--x), var(--y)) scale(1.8) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeTrail {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(600px);
+                opacity: 0;
+            }
+        }
+
+        .love-text {
+
+            cursor: pointer;
+            /* 👈 就这一行 */
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <!-- 封面页 -->
+    <div id="cover">
+        <h1>Hi My Sweetsweet</h1>
+        <p>This is a unique website for you</p>
+        <div class="heart" onclick="heartFirework(event)">💗</div>
+        <script>
+            function heartFirework(event) {
+                const x = event.clientX;
+                const y = event.clientY;
+
+                for (let i = 0; i < 70; i++) {
+                    const heart = document.createElement("div");
+                    heart.className = "particle";
+                    heart.innerText = "💗";
+
+                    heart.style.left = x + "px";
+                    heart.style.top = y + "px";
+
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 280 + 80;
+
+                    const moveX = Math.cos(angle) * distance;
+                    const moveY = Math.sin(angle) * distance;
+
+                    heart.style.setProperty("--x", moveX + "px");
+                    heart.style.setProperty("--y", moveY + "px");
+
+                    heart.style.fontSize = Math.random() * 22 + 12 + "px";
+                    heart.style.animationDuration = Math.random() * 0.6 + 1 + "s";
+
+                    document.body.appendChild(heart);
+
+                    // 拖尾粒子
+                    for (let j = 0; j < 6; j++) {
+                        setTimeout(() => {
+                            const trail = document.createElement("div");
+                            trail.className = "trail";
+
+                            const progress = j / 6;
+                            trail.style.left = x + moveX * progress + "px";
+                            trail.style.top = y + moveY * progress + "px";
+
+                            trail.style.width = Math.random() * 5 + 3 + "px";
+                            trail.style.height = trail.style.width;
+
+                            document.body.appendChild(trail);
+
+                            setTimeout(() => {
+                                trail.remove();
+                            }, 800);
+                        }, j * 60);
+                    }
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 1600);
+                }
+            }
+        </script>
+        <h1>Welcome</h1>
+        <p>Please enter the password to continue.</p>
+        <p style="color: #ff6b81;">Hint: My Birthday (年月日完整的哦）</p>
+        <input id="passwordInput" type="password" placeholder="Enter password" autofocus
+            onkeyup="if(event.key === 'Enter') checkPassword();">
+
+        <button class="cover-btn" onclick="checkPassword()">Open</button>
+
+
+        <p id="errorMessage"></p>
+    </div>
+
+    <!-- 真正内容页 -->
+    <div id="mainPage" class="card" style="display: none;">
+
+
+        <div class="top-row">
+
+
+            <!-- 👇 这是你的 I（完全不改） -->
+            <div class="i-shape">
+                <div class="emoji">🐱 🐶 💗</div>
+                <div class="emoji emoji1">🐱</div>
+                <div class="emoji emoji2">🐶</div>
+                <div class="emoji emoji3">💗</div>
+                <div class="emoji">🐱 🐶 💗</div>
+            </div>
+
+            <!-- 👇 新加 ❤️ U -->
+            <div class="love-text" onclick="showLovePage()">
+                ❤️ U
+            </div>
+
+        </div>
+        <h1>🍰</h1>
+        <p>Click a button to choose a story.</p>
+
+        <div class="button-container">
+            <button class="orange" onclick="showContent('story1')">Story 1</button>
+            <button class="blue" onclick="showContent('story2')">Story 2</button>
+            <button class="orange" onclick="showContent('story3')">Story 3</button>
+        </div>
+
+
+    </div>
+    <div id="storyPage" class="story-page" style="display:none;"></div>
+
+    <div id="lovePage" class="story-page" style="display:none;"></div>
+
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("passwordInput").value;
+
+
+            if (password === "20040528") {
+                const cover = document.getElementById("cover");
+                const main = document.getElementById("mainPage");
+
+                // 封面淡出
+                cover.style.opacity = "0";
+
+                setTimeout(() => {
+                    cover.style.display = "none";
+
+                    // 显示主页面
+                    main.style.display = "block";
+
+                    // 稍微延迟一下再淡入（关键）
+                    setTimeout(() => {
+                        main.style.opacity = "1";
+                    }, 50);
+
+                }, 800);
+
+            } else {
+                document.getElementById("errorMessage").innerHTML = "Wrong password. Try again.";
+                document.getElementById("errorMessage").innerHTML = "Wrong password. Try again.";
+
+                cover.classList.add("shake");
+
+                setTimeout(() => {
+                    cover.classList.remove("shake");
+                }, 350);
+            }
+        }
+
+        function showLovePage() {
+            // 背景变粉色渐变
+            document.body.style.background = "linear-gradient(to bottom, #ffe4ec, #ffd6e7)";
+
+            // 切换页面
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("storyPage").style.display = "block";
+
+            // love 页面内容
+            document.getElementById("storyPage").innerHTML = `
+    <h1 style="font-size:50px;">💗</h1>
+
+    <p style="
+      white-space: pre-line;
+      font-size: 20px;
+      line-height: 1.8;
+      color: #ff4d88;
+      font-weight: bold;
+    ">
+我爱你❤️
+我爱你❤️
+我爱你❤️
+我爱你❤️
+我爱你❤️
+我爱你❤️
+我爱你❤️
+我爱你❤️
+我爱你❤️
+    </p>
+
+    <button onclick="goToMain()" style="
+      margin-top: 30px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(45deg, #ff6fa5, #ff9ecf);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 111, 165, 0.4);
+      transition: all 0.25s ease;
+    ">
+      ← Back
+    </button>
+  `;
+
+            // 页面打开后自动爱心雨
+            setTimeout(() => {
+
+                const hearts = ["❤️", "💕", "💗", "💓", "💙", "🧡", "💛", "💖", "💜", "💞", "💝", "🤍", "🤎", "❤️‍🔥"];
+
+                for (let i = 0; i < 40; i++) {
+
+                    setTimeout(() => {
+                        const heart = document.createElement("div");
+
+                        // 随机选择爱心
+                        heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+
+                        heart.style.position = "fixed";
+                        heart.style.left = Math.random() * window.innerWidth + "px";
+                        heart.style.top = "-20px";
+                        heart.style.pointerEvents = "none";
+
+                        // 随机大小
+                        const size = Math.random() * 20 + 12;
+                        heart.style.fontSize = size + "px";
+
+                        // 下落距离
+                        const fall = Math.random() * 400 + 400;
+
+                        // 动画
+                        heart.style.animation = `fall ${Math.random() * 1 + 1.5}s linear forwards`;
+
+                        document.body.appendChild(heart);
+
+                        // 删除
+                        setTimeout(() => {
+                            heart.remove();
+                        }, 2500);
+
+                    }, i * 80);
+
+                }
+
+            }, 200);
+        }
+
+
+
+
+        function goToMain() {
+            document.body.style.background = "#ffe4ec";
+
+            document.getElementById("storyPage").style.display = "none";
+            document.getElementById("lovePage").style.display = "none";
+            document.getElementById("mainPage").style.display = "block";
+        }
+
+
+        function showContent(section) {
+            const main = document.getElementById("mainPage");
+            const story = document.getElementById("storyPage");
+            // 1. 像 Love Page 那样，只是隐藏，不要删除！
+            main.style.display = "none";
+            story.style.display = "block";
+
+            if (section === "story1") {
+                document.body.style.background = "#eaf6ff";
+
+                story.innerHTML = `
+    <div class="story-page">
+        <div style="text-align: center; background: transparent;"> 
+      <h1>Story 1</h1>
+      <p>小兔子每天都会写信 信里还不忘放上几片香香的花瓣 这封信要翻山越岭才能送到小老虎的手里 小老虎接到信后会先闻闻气味 不急不慢地打开 慢慢回信 我最近动物委员会选举呢 可忙了 没时间想你 可是小老虎在信封里每次都会放上洋桔梗的种子 晚上星星点点 蛙声不绝 小兔子在床上翻来覆去 心里想着小老虎的忙碌 很心疼他的辛苦又闭口不言 自责自己不知道该怎样真的哄好小老虎和突然消失的安全感 小老虎好像也没有睡着 坐在桌子前 可能他也想哄一下小兔子但自己也有情绪堆在那里 小兔子知道小老虎喜欢捉迷藏 自己呆着 其实就是想跟小老虎哄自己那样 安慰一下他 不过每个小动物都有自己独到的方式 没关系 那天晚上 小老虎的床头柜上多了一封小兔子写的信 写着 没关系 小老虎 我一直在❤️</p>
+
+
+      <button 
+  onclick="goToMain()"
+   onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 28px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'"
+  style="
+    margin-top: 30px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 999px;
+    background: white;
+    color: #4aa3df;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  "
+>
+  ← Back
+</button>
+
+    </div>
+    
+  `;
+            }
+
+            if (section === "story2") {
+                document.body.style.background = "#ffc9a9";
+
+                story.innerHTML = `
+      <div class="story-page">
+        <h1>Story 2</h1>
+        <p>有一天小猫懒洋洋的捧着书在暖暖的阳光下，她瞥见书上写着：“打喷嚏说明有人在想你。”一阵微风吹过，带着阳光和淡淡泥土混杂着青草的味道，“阿嚏阿嚏”小猫打了两个大大的喷嚏，这喷嚏猝不及防小猫的脑袋都懵懵的，“是谁呢”，她这样想着，“这么大的喷嚏，他一定在用力想我。”突然小猫灵光一闪，一定是大狗狗！于是小猫拿起小鱼手机，打开了和大狗狗的聊天页面，“我打喷嚏了，是谁在想我呢”大狗狗说：“我！是我！”小猫嘴角上扬“我也想你”“好天气想和你去野餐，去海边散步，去爬山”说到这里小猫撇撇嘴巴低下了头，可是现在大狗狗不在我身边呢。脑海里都是关于大狗狗的记忆，衣服香香带着洗衣液混杂着大狗狗的味道，爪子厚厚的……不过很快就可以见面了呢，小猫想。就在小猫撇着嘴、脑海里循环播放大狗狗的抓子和香味时，窗外那阵带着泥土清香的微风突然变大了些，还伴随着一阵轻微的、熟悉的草丛摩擦声。“叮咚——” 小鱼手机震动了一下，是大狗狗发来的新消息：“其实，风也把你的喷嚏传给我了。”小猫还没转过神来，就听到窗台下传来一个憨厚又活泼的声音：“所以，为了不让你一个人打喷嚏，我决定直接跑过来陪你！”小猫猛地抬起头，看见那只日思夜想的大狗狗，正背着一个小小的野餐包，鼻尖上还沾着一抹不知从哪儿蹭到的绿草芽，在大太阳底下笑得像个傻乎乎的向日葵。“快下来呀，小猫！虽然海边有点远，但后山的小坡上，现在的风正好适合野餐！”小猫心里的那点小委屈瞬间烟消云散，她一跃而起，连书都顾不上合，像一颗炮弹一样飞扑进大狗狗怀里。阳光依旧暖烘烘的，但现在，空气里不只有泥土和青草的味道，还有了大狗狗身上那股好闻的、暖洋洋的洗衣液香气。❤️
+
+</p>
+
+      <button 
+        onclick="goToMain()"
+        onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 28px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'"
+        style="
+          margin-top: 30px;
+          padding: 14px 32px;
+          border: none;
+          border-radius: 999px;
+          background: white;
+          color: #ff8c42;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          transition: all 0.25s ease;
+        "
+      >
+        ← Back
+      </button>
+     
+
+    </div>
+  `;
+            }
+
+
+
+            if (section === "story3") {
+                document.body.style.background = "#eaf6ff";
+
+                story.innerHTML = `
+    <div class="story-page">
+        <div style="text-align: center; background: transparent;"> 
+      <h1>Story 3</h1>
+      <p>大熊垂着脑袋问小兔子：“我喜欢捉迷藏，你会一直来找我吗？不开心的时候，累的时候会想要一个人躲起来，你会一直在吗？我觉得我应该要陪陪你，应该要这样做，但是最近好忙哦，忙到我都没有什么时间给我自己，计划也一遍一遍打乱。我想见到你，但是偶尔还是想要自己呆呆，但又怕你会觉得我冷淡了。“小兔子摸摸大熊脑袋，叉着腰抬着头看着大熊说：我会，会告诉你我一直在。你是个很好的人，我怕你会委屈自己的感受来让我觉得开心，其实我也很在意你的感受，虽然没收到晚安会有点失落，但是知道你很累，可能那天没有欲望在想说晚安，你就是你，只属于你自己，我喜欢你所以希望你可以开心。你会记得我说过的话，记得情绪不过夜，照顾我的情绪，世界上本来就没有完美的人，我觉得你好，你就是世界上最好的。”“而且其实我也怕，我怕会很依赖你，但我又怕这样你会觉得有负担，所以我有时候会克制一下自己，但是又有些克制不住。我小脾气多，喜欢吃醋，有时候会没有安全感，还会说点反话，明明有时候你也很累了但是还要陪我说话”小兔子越说嘴巴撅的越高，声音里带了一点哭腔。大熊紧紧抱住小兔子，“谢谢你，你已经做的很好了，你不会冷着我会直接告诉我你的想法，
+        <!-- 视觉重点：蓝色加粗填空位 -->
+                    <p style="text-align: center; font-weight: bold; letter-spacing: 8px; color: #4aa3df; margin: 25px 0；">
+                        ······
+                    </p>
+        <p>我们会一起找到一个平衡点的，对吗。”云朵在晚霞里醉成了微醺的粉色，风也变得粘稠起来，带着一种湿漉漉的、属于夏夜的浪漫。万物都在此刻收敛了锋芒，只剩下彼此的心跳声，在忽明忽暗的暮色里，频率一致地跳动着。小兔子点点头，谢谢你，大熊，我爱你。❤️</p>
+
+<!-- 这里是你新加的 PS -->
+                <div style="margin-top: 30px; border-top: 1px dashed #ccc; padding-top: 15px; font-size: 14px; color: #999; line-height: 1.6;">
+                    <strong>PS：</strong>省略号里面是大熊自己的想法，可以找机会告诉我，也可以自己偷偷存着。✨
+                </div>
+            </div>
+
+
+      <button 
+  onclick="goToMain()"
+   onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 28px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'"
+  style="
+    margin-top: 30px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 999px;
+    background: white;
+    color: #4aa3df;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  "
+>
+  ← Back
+</button>
+
+    </div>
+    
+  `;
+            }
+        }
+
+    </script>
+</body>
+</script>
+</body>
+
+</html>
