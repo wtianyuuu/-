@@ -384,6 +384,20 @@
             ✈️
         </div>
 
+        <div onclick="showCatDiary()" onmouseover="this.style.transform='scale(1.2)'"
+            onmouseout="this.style.transform='scale(1)'" style="
+        position: absolute;
+        top: 20px;
+        left: 20px; /* 改为左边 */
+        font-size: 40px;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.3s ease;
+        z-index: 10;
+     ">
+            🐱
+        </div>
+
         <div class="top-row">
 
 
@@ -607,6 +621,53 @@
         </div>
     `;
         }
+
+        function showCatDiary() {
+            const story = document.getElementById("storyPage");
+            const main = document.getElementById("mainPage");
+
+            main.style.display = "none";
+            story.style.display = "block";
+
+            // 暖暖的奶黄色背景
+            document.body.style.background = "#fffdf0";
+
+            story.innerHTML = `
+        <div class="story-page" style="max-width: 500px; margin: auto; text-align: left; padding: 20px; position: relative;">
+            
+            <div onclick="goToMain()" 
+                 onmouseover="this.style.transform='scale(1.2)'" 
+                 onmouseout="this.style.transform='scale(1)'"
+                 style="position: absolute; top: 0px; left: 0px; font-size: 35px; cursor: pointer; transition: transform 0.3s;">
+                🐱
+            </div>
+
+            <h1 style="text-align: center; color: #d4a373; font-size: 28px; margin-bottom: 30px; font-family: 'STKaiti', 'KaiTi', serif;">小猫日记 🐾</h1>
+            
+            <div style="background: white; padding: 30px; border-radius: 20px; border: 1px solid #faedcd; box-shadow: 0 10px 20px rgba(212, 163, 115, 0.1);">
+                <div style="margin-bottom: 25px;">
+                    <span style="color: #d4a373; font-weight: bold; font-size: 14px;">2026.04.20 ☁️</span>
+                    <p style="margin-top: 10px; color: #5f665c; line-height: 1.8;">今天给肉松看我的thesis，本来想得意一下，结果一下就被他看见"AND"和细菌的名字一样都变成斜体了，哼，下次我要更细心一点才好。</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <span style="color: #d4a373; font-weight: bold; font-size: 14px;">2026.05.08 😿</span>
+                    <p style="margin-top: 10px; color: #5f665c; line-height: 1.8;">面包这几天都好忙好忙，但他和我说过了，所以，让他知道我在就好了。真是辛苦他了。</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <span style="color: #d4a373; font-weight: bold; font-size: 14px;">2026.05.08 🐈</span>
+                    <p style="margin-top: 10px; color: #5f665c; line-height: 1.8;">奶油说他看见更新的内容了，但是为什么不来兑换截屏。又不想去问他，不想让这个变成负担......</p>
+                </div>
+                
+                <div style="text-align: center; color: #ccd5ae; font-size: 12px; margin-top: 40px;">
+                    — 这里的日记会慢慢变长 —
+                </div>
+            </div>
+        </div>
+    `;
+        }
+
 
 
         function goToMain() {
