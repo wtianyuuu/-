@@ -635,15 +635,6 @@
             story.innerHTML = `
         <div class="story-page" style="max-width: 500px; margin: auto; text-align: left; padding: 60px 20px 20px 20px; position: relative;">
             
-<!-- 核心：把小猫和标题放在同一个 div 里 -->
-        <div style="text-align: center; margin-bottom: 30px;">
-
-            <div onclick="goToMain()" 
-                 onmouseover="this.style.transform='scale(1.2)'" 
-                 onmouseout="this.style.transform='scale(1)'"
-                 style="top: 15px; left: 20px; font-size: 50px; cursor: pointer; transition: transform 0.3s; z-index: 100">
-                🐱
-            </div>
 
             <h1 style="text-align: center; color: #d4a373; font-size: 28px; margin-bottom: 30px; font-family: 'STKaiti', 'KaiTi', serif; vertical-align: middle">小猫日记 🐾</h1>
             
@@ -672,6 +663,17 @@
                     — 这里的日记会慢慢变长 —
                 </div>
             </div>
+
+
+            <div style="text-align: center; margin-top: 30px; padding-bottom: 20px;">
+            <div onclick="goToMain()" 
+                 onmouseover="this.style.transform='scale(1.2)'" 
+                 onmouseout="this.style.transform='scale(1)'"
+                 style="font-size: 40px; cursor: pointer; transition: transform 0.3s; display: inline-block; user-select: none;">
+                🐱
+            </div>
+            <p style="color: #d4a373; font-size: 13px; margin-top: 8px;">点击小猫返回主页</p>
+        </div>
         </div>
     `;
         }
