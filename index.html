@@ -423,6 +423,7 @@
             <button class="orange" onclick="showContent('story1')">Story 1</button>
             <button class="blue" onclick="showContent('story2')">Story 2</button>
             <button class="orange" onclick="showContent('story3')">Story 3</button>
+            <button class="blue" onclick="showContent('story4')">Story 4</button>
         </div>
 
 
@@ -814,6 +815,45 @@
     
   `;
             }
+            if (section === "story4") {
+                document.body.style.background = "#ffc9a9";
+
+                story.innerHTML = `
+      <div class="story-page">
+        <h1>Story 4</h1>
+        <p>大熊有一个小习惯，难过的时候喜欢自己消化，像把情绪放进一个小盒子里盖好，然后说“没事”，至于小盒子最后有没有消失，只有他自己知道。那天晚上，小狐狸发现他有点不对劲，洗漱完后变得好安静，坐在床上，闷闷的。小狐狸擦着头发，“你怎么啦”，大熊下意识回答“没事，我自己呆呆就好。”话刚出口，连大熊都愣了一下，太顺了。小狐狸没有拆穿，只是坐在了他旁边，“真的没事，还是不想说呢。”，房间里安静了2秒，大熊捏了一下被子说“....不想说，没关系，”小狐狸点点头，“好。”没有追问，也没有失落，只是把房间里的灯调的暗了一点，然后靠在旁边，静静地。过了好久，大熊突然开口“其实是今天我有个东西没完成，被质疑了。”声音轻轻的，像是小心翼翼的把盒子掀开了一个口，小狐狸没有打断他，只是问“这个扎到哪里了。”大熊怔了一下，“可能...扎到了我本来就怀疑自己的地方。”有时候，难过，可能是刚好那句话扎到了内心还在下雨的地方。小狐狸说“那今晚先别着急证明自己，也别急着说服自己让自己恢复。”大熊没说话，只是往小狐狸身边靠了一下，灯很暗，小狐狸软软的，那种不开心的感觉没有消失，但也没那么重了。睡前，小狐狸突然开口说道：“情绪这种东西，自己搬，多累啊。”大熊没有开口，但是月亮知道，今晚谁也没有把委屈偷偷带进梦里。
+</p>
+
+      <button 
+        onclick="goToMain()"
+        onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 28px rgba(0,0,0,0.2)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)'"
+        style="
+          margin-top: 30px;
+          padding: 14px 32px;
+          border: none;
+          border-radius: 999px;
+          background: white;
+          color: #ff8c42;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          transition: all 0.25s ease;
+        "
+      >
+        ← Back
+      </button>
+     
+
+    </div>
+  `;
+            }
+
+
+
+
+
         }
 
     </script>
